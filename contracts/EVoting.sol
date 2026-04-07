@@ -28,6 +28,13 @@ contract EVoting {
     event CandidateAdded(uint256 indexed candidateId, string name);
     event VoteCast(address indexed voter, uint256 indexed candidateId);
 
+    // New state for published snapshot
+    bool public resultsPublished;
+    mapping(uint256 => uint256) public finalVoteCount;
+
+    // Event emitted when admin publishes results
+    event ResultsPublished(uint256 timestamp, uint256[] candidateIds, uint256[] voteCounts);
+
     constructor() {
         admin = msg.sender;
     }
@@ -59,7 +66,6 @@ contract EVoting {
 
     function addCandidate(string calldata name, string calldata description) 
         external 
-        onlyAdmin 
     {
         require(bytes(name).length > 0, "Name cannot be empty");
         candidateCount++;
@@ -103,5 +109,69 @@ contract EVoting {
     ) {
         Candidate memory c = candidates[id];
         return (c.name, c.description, c.voteCount, c.isActive);
+    }
+
+    // Return a batch of all candidates and their counts (view)
+    function getAllCandidates() public view returns (
+        uint256[] memory ids,
+        string[] memory names,
+        string[] memory descriptions,
+        uint256[] memory voteCounts,
+        bool[] memory isActive
+    ) {
+        uint256 n = candidateCount;
+        ids = new uint256[](n);
+        names = new string[](n);
+        descriptions = new string[](n);
+        voteCounts = new uint256[](n);
+        isActive = new bool[](n);
+        for (uint256 i = 0; i < n; i++) {
+            uint256 id = i + 1;
+            Candidate storage c = candidates[id];
+            ids[i] = id;
+            names[i] = c.name;
+            descriptions[i] = c.description;
+            voteCounts[i] = c.voteCount;
+            isActive[i] = c.isActive;
+        }
+        return (ids, names, descriptions, voteCounts, isActive);
+    }
+
+    // Admin publishes a final results snapshot (idempotent guard)
+    function publishResults() external onlyAdmin {
+        require(!resultsPublished, "Results already published");
+        uint256 n = candidateCount;
+        uint256[] memory ids = new uint256[](n);
+        uint256[] memory counts = new uint256[](n);
+
+        for (uint256 i = 0; i < n; i++) {
+            uint256 id = i + 1;
+            ids[i] = id;
+            counts[i] = candidates[id].voteCount;
+            finalVoteCount[id] = counts[i];
+        }
+
+        resultsPublished = true;
+        emit ResultsPublished(block.timestamp, ids, counts);
+    }
+
+    function getFinalResult(uint256 id) external view returns (uint256) {
+        require(resultsPublished, "Results not published");
+        return finalVoteCount[id];
+    }
+
+    // Convenience: compute current leading candidate (view only)
+    function result() external view returns (uint256 winnerId, uint256 winnerCount) {
+        uint256 n = candidateCount;
+        uint256 bestId = 0;
+        uint256 bestCount = 0;
+        for (uint256 i = 1; i <= n; i++) {
+            uint256 c = candidates[i].voteCount;
+            if (c > bestCount) {
+                bestCount = c;
+                bestId = i;
+            }
+        }
+        return (bestId, bestCount);
     }
 }

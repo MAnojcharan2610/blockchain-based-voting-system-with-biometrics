@@ -33,6 +33,31 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "candidateIds",
+						"type": "uint256[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "voteCounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "ResultsPublished",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "voter",
@@ -168,6 +193,58 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "finalVoteCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getAllCandidates",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "ids",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "names",
+						"type": "string[]"
+					},
+					{
+						"internalType": "string[]",
+						"name": "descriptions",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "voteCounts",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "bool[]",
+						"name": "isActive",
+						"type": "bool[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "id",
 						"type": "uint256"
 					}
@@ -193,6 +270,25 @@
 						"internalType": "bool",
 						"name": "isActive",
 						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "getFinalResult",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -237,6 +333,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "publishResults",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "string",
@@ -252,6 +355,37 @@
 				"name": "registerVoter",
 				"outputs": [],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "result",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "winnerId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "winnerCount",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "resultsPublished",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -348,11 +482,11 @@
 	},
 	"sources": {
 		"EVoting.sol": {
-			"keccak256": "0xf4005ea87f44039d648cf045bfb70d1e43325516dd90c463ae622c30aec596f8",
+			"keccak256": "0x157d97521f4b8603c18ec4e32116fef0a5ff1c6df0d96645ff1aa5bdfd134ba8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://06d5a4522803ad8da90a2a87da8fc12661abc8b1332ab462953fa1683fa55c8a",
-				"dweb:/ipfs/Qmd16gejpTzkrMYarq6oV6kpUBWQozFBcXZczF1poXo3Rg"
+				"bzz-raw://a9d8c842767984d59db7de81a5f8443a0ee110cc63d26d5fcc02863dc2b6543e",
+				"dweb:/ipfs/QmP4aLJoyeoRZHSEX4dTqkaFkmbw4seuStE4QZYYtee27M"
 			]
 		}
 	},

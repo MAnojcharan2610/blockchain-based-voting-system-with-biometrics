@@ -1,14 +1,14 @@
-@import './_variables';
+@use './_variables' as vars;
 
 // Sidebar Styles
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
-  width: $sidebar-width;
+  width: vars.$sidebar-width;
   height: 100vh;
-  background: $bg-dark;
-  border-right: 1px solid $border-color;
+  background: vars.$bg-dark;
+  border-right: 1px solid vars.$border-color;
   padding: 1rem;
   z-index: 100;
 
@@ -37,7 +37,7 @@
       text-decoration: none;
       padding: 0.8rem 1rem;
       border-radius: 8px;
-      transition: all $transition-speed;
+      transition: all vars.$transition-speed;
 
       i {
         width: 20px;
@@ -45,11 +45,11 @@
       }
 
       &:hover {
-        background: $border-color;
+        background: vars.$border-color;
       }
 
       &.active {
-        background: $accent;
+        background: vars.$accent;
         font-weight: 500;
       }
     }
@@ -77,7 +77,7 @@
     border-radius: 8px;
     color: #fff;
     cursor: pointer;
-    transition: background $transition-speed;
+    transition: background vars.$transition-speed;
 
     &:hover {
       background: rgba(255,255,255,0.2);
@@ -86,7 +86,7 @@
     .profile-initial {
       width: 32px;
       height: 32px;
-      background: $accent;
+      background: vars.$accent;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -100,15 +100,15 @@
     top: 100%;
     right: 0;
     margin-top: 0.5rem;
-    background: $bg-dark;
-    border: 1px solid $border-color;
+    background: vars.$bg-dark;
+    border: 1px solid vars.$border-color;
     border-radius: 8px;
     padding: 0.5rem;
     min-width: 200px;
 
     .profile-info {
       padding: 0.8rem;
-      border-bottom: 1px solid $border-color;
+      border-bottom: 1px solid vars.$border-color;
       
       strong {
         display: block;
@@ -116,7 +116,7 @@
       }
       
       span {
-        color: $muted;
+        color: vars.$muted;
         font-size: 0.9rem;
       }
     }
@@ -127,12 +127,12 @@
       padding: 0.8rem;
       background: none;
       border: none;
-      color: $danger;
+      color: vars.$danger;
       cursor: pointer;
       border-radius: 4px;
 
       &:hover {
-        background: rgba($danger, 0.1);
+        background: rgba(vars.$danger, 0.1);
       }
     }
   }

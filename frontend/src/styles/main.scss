@@ -1,10 +1,12 @@
-@import './_theme';
+@use 'sass:map';
+@use './_theme' as theme;
+@use './fingerprint';
 
 // Reset & Base Styles
 body {
   background: #0f172a; // gray-900
   color: #f8fafc; // gray-50
-  font-family: $font-family-base;
+  font-family: theme.$font-family-base;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -14,10 +16,10 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: map-get($spacing, 4);
+  padding: map.get(theme.$spacing, 4);
   
-  @media (min-width: map-get($breakpoints, lg)) {
-    padding: map-get($spacing, 8);
+  @media (min-width: map.get(theme.$breakpoints, lg)) {
+    padding: map.get(theme.$spacing, 8);
   }
 }
 
@@ -26,7 +28,7 @@ body {
   background: #1e293b; // gray-800
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
-  padding: map-get($spacing, 6);
+  padding: map.get(theme.$spacing, 6);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(12px);
   transition: transform 0.2s ease;
@@ -41,7 +43,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: map-get($spacing, 3) map-get($spacing, 6);
+  padding: map.get(theme.$spacing, 3) map.get(theme.$spacing, 6);
   border-radius: 0.75rem;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -73,8 +75,8 @@ body {
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: map-get($spacing, 6);
-  margin: map-get($spacing, 6) 0;
+  gap: map.get(theme.$spacing, 6);
+  margin: map.get(theme.$spacing, 6) 0;
 }
 
 // Candidate Card
@@ -128,15 +130,15 @@ body {
 .badge {
   display: inline-flex;
   align-items: center;
-  padding: map-get($spacing, 2) map-get($spacing, 4);
+  padding: map.get(theme.$spacing, 2) map.get(theme.$spacing, 4);
   border-radius: 9999px;
-  font-size: map-get($font-sizes, sm);
+  font-size: map.get(theme.$font-sizes, sm);
   font-weight: 500;
 
   &.success {
-    background: rgba($success, 0.1);
-    color: $success;
-    border: 1px solid rgba($success, 0.2);
+    background: rgba(theme.$success, 0.1);
+    color: theme.$success;
+    border: 1px solid rgba(theme.$success, 0.2);
   }
 }
 
@@ -144,7 +146,7 @@ body {
 .form {
   display: flex;
   flex-direction: column;
-  gap: map-get($spacing, 4);
+  gap: map.get(theme.$spacing, 4);
 
   .form-title {
     font-size: 1.5rem;
