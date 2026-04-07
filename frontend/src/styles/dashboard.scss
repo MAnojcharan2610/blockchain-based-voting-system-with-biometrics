@@ -1,0 +1,51 @@
+.dashboard {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .welcome-section {
+    background: rgba(255,255,255,0.05);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+
+    h2 {
+      margin: 0 0 1rem 0;
+      color: #fff;
+    }
+
+    p {
+      color: #9aa4b2;
+      margin: 0;
+    }
+  }
+
+  .actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+
+    .action-card {
+      background: rgba(255,255,255,0.05);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: translateY(-2px);
+        background: rgba(255,255,255,0.08);
+      }
+
+      h3 {
+        color: #1976d2;
+        margin: 0 0 0.5rem 0;
+      }
+
+      p {
+        color: #9aa4b2;
+        margin: 0;
+      }
+    }
+  }
+}

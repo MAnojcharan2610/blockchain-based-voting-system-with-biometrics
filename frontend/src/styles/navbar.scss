@@ -1,0 +1,139 @@
+@use './_variables' as vars;
+
+// Sidebar Styles
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: vars.$sidebar-width;
+  height: 100vh;
+  background: vars.$bg-dark;
+  border-right: 1px solid vars.$border-color;
+  padding: 1rem;
+  z-index: 100;
+
+  .nav-logo {
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    
+    h2 {
+      color: #fff;
+      margin: 0;
+      font-size: 1.5rem;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.8rem 1rem;
+      border-radius: 8px;
+      transition: all vars.$transition-speed;
+
+      i {
+        width: 20px;
+        text-align: center;
+      }
+
+      &:hover {
+        background: vars.$border-color;
+      }
+
+      &.active {
+        background: vars.$accent;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// Profile Section Styles
+.profile-section {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 101;
+
+  .profile-menu {
+    position: relative;
+  }
+
+  .profile-button {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: background vars.$transition-speed;
+
+    &:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    .profile-initial {
+      width: 32px;
+      height: 32px;
+      background: vars.$accent;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+    }
+  }
+
+  .profile-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    background: vars.$bg-dark;
+    border: 1px solid vars.$border-color;
+    border-radius: 8px;
+    padding: 0.5rem;
+    min-width: 200px;
+
+    .profile-info {
+      padding: 0.8rem;
+      border-bottom: 1px solid vars.$border-color;
+      
+      strong {
+        display: block;
+        color: #fff;
+      }
+      
+      span {
+        color: vars.$muted;
+        font-size: 0.9rem;
+      }
+    }
+
+    button {
+      width: 100%;
+      text-align: left;
+      padding: 0.8rem;
+      background: none;
+      border: none;
+      color: vars.$danger;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:hover {
+        background: rgba(vars.$danger, 0.1);
+      }
+    }
+  }
+}

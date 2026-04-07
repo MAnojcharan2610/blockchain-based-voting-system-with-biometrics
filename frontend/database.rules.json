@@ -1,0 +1,11 @@
+{
+  "rules": {
+    "users": {
+      ".indexOn": ["aadhaarNumber"],
+      ".read": true,
+      ".write": true
+    },
+    ".read": true,
+    ".write": true
+  }
+}
